@@ -76,13 +76,13 @@ namespace PlebAdventure
         public string Name { get; }
         public CharacterStats CharacterStats { get; }
 
-        private CharacterClass(CharacterStats characterStats, [CallerMemberName] string name = default)
+        private CharacterClass(CharacterStats characterStats, [CallerMemberName] string? name = default)
         {
             CharacterStats = characterStats;
-            Name = name;
+            Name = name ?? throw new ArgumentNullException(nameof(name));
         }
 
-        public static implicit operator string(CharacterClass @class) => @class?.Name;
-        public static implicit operator CharacterClass(string name) => typeof(CharacterClass).GetField(name, BindingFlags.Public | BindingFlags.Static)?.GetValue(null) as CharacterClass ?? default;
+        public static implicit operator string?(CharacterClass? @class) => @class?.Name;
+        public static implicit operator CharacterClass?(string? name) => typeof(CharacterClass).GetField(name ?? "", BindingFlags.Public | BindingFlags.Static)?.GetValue(null) as CharacterClass ?? default;
     }
 }

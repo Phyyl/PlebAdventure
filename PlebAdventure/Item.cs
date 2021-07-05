@@ -10,5 +10,12 @@ namespace PlebAdventure
     {
         public CharacterStats BonusCharacterStats { get; init; } = new();
         public ItemStats ItemStats { get; init; } = new();
+
+        public string Name { get; init; }
+        
+        public Item(string name)
+        {
+            Name = name;
+        }
     }
 }

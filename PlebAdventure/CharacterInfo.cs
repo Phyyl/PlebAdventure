@@ -12,5 +12,13 @@ namespace PlebAdventure
         public string FirstName { get; init; }
         public string MiddleName { get; init; }
         public string LastName { get; init; }
+
+        public CharacterInfo(CharacterClass @class, string firstName, string middleName, string lastName)
+        {
+            Class = @class ?? throw new ArgumentNullException(nameof(@class));
+            FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
+            MiddleName = middleName ?? throw new ArgumentNullException(nameof(middleName));
+            LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+        }
     }
 }

@@ -2,13 +2,13 @@
 {
     public record CharacterEquipment
     {
-        public HelmetItem Helmet { get; set; }
-        public GloveItem Gloves { get; set; }
-        public ChestItem Chest { get; set; }
-        public BootItem Boots { get; set; }
-        public PantsItem Pants { get; set; }
+        public Item? Helmet { get; set; }
+        public Item? Gloves { get; set; }
+        public Item? Chest { get; set; }
+        public Item? Boots { get; set; }
+        public Item? Pants { get; set; }
 
-        public CharacterStats TotalBonusCharacterStats => Helmet?.BonusCharacterStats + Gloves?.BonusCharacterStats + Chest?.BonusCharacterStats + Boots?.BonusCharacterStats + Pants?.BonusCharacterStats;
-        public ItemStats TotalItemStats => Helmet.ItemStats + Gloves.ItemStats + Chest.ItemStats + Boots.ItemStats + Pants?.ItemStats;
+        public CharacterStats TotalBonusCharacterStats => CharacterStats.Combine(Helmet?.BonusCharacterStats, Gloves?.BonusCharacterStats, Chest?.BonusCharacterStats, Boots?.BonusCharacterStats, Pants?.BonusCharacterStats);
+        public ItemStats TotalItemStats => ItemStats.Combine(Helmet?.ItemStats, Gloves?.ItemStats, Chest?.ItemStats, Boots?.ItemStats, Pants?.ItemStats);
     }
 }

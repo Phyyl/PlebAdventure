@@ -9,59 +9,15 @@ namespace PlebAdventure
     {
         static void Main(string[] args)
         {
-            //Character c = new("Vladimir", "Frite Sauce", CharacterClass.Bard);
+            Character c = new(new(CharacterClass.Bard, "Vladimir", "Frite", "Sauce"));
 
-            //c.Equipment.Boots = new()
-            //{
-            //    ItemStats = new()
-            //    {
-            //        Defense = 3
-            //    }
-            //};
-
-            ExpandoObject a = new ExpandoObject();
-            
-            dynamic b = a;
-
-            b.Defense = 3;
-            b.Damage = 133;
-
-            foreach (var item in a)
+            c.Equipment.Boots = new("Magic Boots")
             {
-                Console.WriteLine($"{item.Key} = {item.Value}");
-            }
-        }
-
-        static ExpandoObject Merge(ExpandoObject a, ExpandoObject b)
-        {
-            static T Merge<T>(T a, T b)
-            {
-
-            }
-
-            ExpandoObject result = new ExpandoObject();
-
-            foreach (var item in a)
-            {
-                result.TryAdd(item.Key, item.Value);
-            }
-
-            foreach (var item in b)
-            {
-                if (!result.TryAdd(item.Key, item.Value))
+                ItemStats = new()
                 {
-                    result[item.Key] = Merge(result[item.Key], item.Value);
+                    Defense = 3
                 }
-            }
+            };
         }
     }
-}
-
-
-namespace Testing
-{
-    //public class Item : PropertyCollection
-    //{
-
-    //}
 }
